@@ -20,9 +20,9 @@ class NoteAdapter(var notes: List<Note>): RecyclerView.Adapter<NoteAdapter.ViewH
         var btn_edit : ImageView
         init{
             name = v.findViewById(R.id.txt_title_note)
-            description = v.findViewById(R.id.txt_description_note)
-            btn_delete = v.findViewById(R.id.btn_delete)
-            btn_edit = v.findViewById(R.id.btn_edit)
+            description = v.findViewById(R.id.txtDescripcion)
+            btn_delete = v.findViewById(R.id.btnDelete)
+            btn_edit = v.findViewById(R.id.btnEdit)
 
         }
 
