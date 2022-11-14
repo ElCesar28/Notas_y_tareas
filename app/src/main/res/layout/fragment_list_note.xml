@@ -54,14 +54,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:layout_marginBottom="36dp"
             android:clickable="true"
             android:contentDescription="Descripcion"
             android:focusable="true"
             android:src="@android:drawable/ic_menu_add"
+            app:backgroundTint="@color/purple_500"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginRight="16dp" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

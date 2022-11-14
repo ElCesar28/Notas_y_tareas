@@ -36,7 +36,7 @@ class ListNote : Fragment() {
 
         //Navigation
         root.findViewById<FloatingActionButton>(R.id.add).setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_listNote_to_createNote2)
+            view?.findNavController()?.navigate(R.id.action_listNote_to_createNote)
         }
 
         return root.rootView

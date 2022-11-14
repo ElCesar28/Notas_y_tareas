@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.cesar.notasytareas.data.NoteDatabase
 import com.cesar.notasytareas.model.Note
@@ -51,7 +52,7 @@ class NoteAdapter(var notes: List<Note>): RecyclerView.Adapter<NoteAdapter.ViewH
             bundle.putString("title", p.title)
             bundle.putString("description", p.description)
             bundle.putString("type", p.type.toString())
-            //view.findNavController().navigate(R.id.action_note_list_to_add_note,bundle)
+            view.findNavController().navigate(R.id.action_listNote_to_createNote,bundle)
 
         }
 
