@@ -1,5 +1,7 @@
 package com.cesar.notasytareas
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +16,7 @@ import com.cesar.notasytareas.model.Note
 import kotlinx.coroutines.launch
 
 class CreateNote : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,7 +37,6 @@ class CreateNote : Fragment() {
             bundle.putString("title", binding.title.text.toString())
             bundle.putString("description", binding.description.text.toString())
             parentFragmentManager.setFragmentResult("key",bundle)
-
             //Insert
             lifecycleScope.launch{
                 if (id == -1){
@@ -42,16 +44,31 @@ class CreateNote : Fragment() {
                     val newNote = Note( binding.title.text.toString(),binding.description.text.toString(),2,"","",false)
                     NoteDatabase.getDatabase(requireActivity().applicationContext).noteDao().insert(newNote)
                     NoteDatabase.getDatabase(requireActivity().applicationContext).noteDao().getAllNotes()
+                    it.findNavController().navigate(R.id.action_createNote_to_listNote)
                 } else {
                     //update note
-                    NoteDatabase.getDatabase(requireActivity().applicationContext).noteDao().updateNote(binding.title.text.toString(),binding.description.text.toString(),id)
-                    NoteDatabase.getDatabase(requireActivity().applicationContext).noteDao().getAllNotes()
+                    val builder = AlertDialog.Builder(activity)
+                    builder.apply{
+                        setTitle(R.string.editDialogAlertTitle)
+                        setMessage(R.string.editDialogAlertMessage)
+                        setPositiveButton(getString(R.string.ok), DialogInterface.OnClickListener { dialog, which ->
+                            NoteDatabase.getDatabase(requireActivity().applicationContext).noteDao().updateNote(binding.title.text.toString(),binding.description.text.toString(),id)
+                            NoteDatabase.getDatabase(requireActivity().applicationContext).noteDao().getAllNotes()
+                            it.findNavController().navigate(R.id.action_createNote_to_listNote)
+                            dialog.cancel()
+                        })
+                        setNegativeButton(getString(R.string.cancel), DialogInterface.OnClickListener { dialog, _ ->
+                            dialog.cancel()
+                        })
+                    }
+                    val adapter = builder.create()
+                    adapter.show()
                 }
 
             }
 
             //Navigation
-            it.findNavController().navigate(R.id.action_createNote_to_listNote)
+
         }
 
         binding.btnCancel.setOnClickListener {
@@ -61,4 +78,5 @@ class CreateNote : Fragment() {
 
         return binding.root
     }
+
 }

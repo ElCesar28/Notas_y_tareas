@@ -10,4 +10,10 @@
     <string name="delete">delete</string>
     <string name="edit">Edit</string>
     <string name="type">Type</string>
+
+    <string name="editDialogAlertMessage">¿Estas seguro de que quieres editar la nota?</string>
+    <string name="editDialogAlertTitle">Alerta!</string>
+    <string name="ok">Está bien</string>
+    <string name="cancel">Cancelar</string>
+    <string name="note_adapter_alertdialog_message">Vas a eliminar la nota</string>
 </resources>
